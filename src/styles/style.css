@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    color: black;
+    background-color: #d5d0ff;
+    font-family: "Truculenta", sans-serif;
+    font-weight: 500;
+}
+
+div.active-state-div a.active p {
+    color: #c49dff;
+}
+
+nav.help a.active{
+    background-color: #1700ff;
+}
