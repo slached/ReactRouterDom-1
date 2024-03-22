@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const mongoose = require('mongoose')
 const port = 3001
-const url = "mongodb+srv://Slached:254857Os@mysite.n8xf8lg.mongodb.net/devopsAPI"
+const url = "your mongocloud url here"
 
 //middlewares
 app.use(express.urlencoded({extended: true}))
