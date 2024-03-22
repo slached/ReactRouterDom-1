@@ -1,4 +1,6 @@
-**post** `/user/create` creates user and body must contain **email and password**.
+**post** `/user/create` creates user 
+
+Body must contains **email and password**.
 
 <img alt="img" src="./githubImages/Screenshot_1.png">
 
@@ -10,7 +12,9 @@ if you try to create an user with same email api doesn't accept this request.
 
 ---
 
-**patch** `/token/create` creates token for user and body must contain **email and password**.
+**patch** `/token/create` creates token for user.
+
+Body must contain **email and password**.
 
 <img alt="img" src="./githubImages/Screenshot_3.png">
 
