@@ -14,10 +14,27 @@ const getUserData = (req, res) => {
 
     userCollection.exists({token: token})
         .then((value) => {
-            value !== null ? userCollection.find().then(value => res.json(value)).catch(err => res.json(err)) : res.json({
-                status: "error",
-                message: "Token doesn't exists"
-            })
+            value !== null ? userCollection.find().then(value => res.json(value)).catch(err => res.json(err)) :
+                res.status(403).json({
+                    status: "error",
+                    message: "Token doesn't exists"
+                })
         })
 }
-module.exports = {create, getUserData}
+
+const getOneUser = (req, res) => {
+    let token = req.headers.authorization
+    if (token === undefined) token = " "
+
+    userCollection.exists({token: token})
+        .then((value) => {
+            value !== null ? userCollection.findById(req.params.id).then(val => res.json(val)).catch(err => res.json(err)) :
+                res.status(403).json({
+                    status: "error",
+                    message: "Token doesn't exists"
+                })
+        })
+}
+
+
+module.exports = {create, getUserData, getOneUser}

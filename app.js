@@ -1,12 +1,13 @@
 const express = require("express")
 const app = express()
 const mongoose = require('mongoose')
-const port = 3000
+const port = 3001
 const url = "mongodb+srv://Slached:254857Os@mysite.n8xf8lg.mongodb.net/devopsAPI"
-const cookieParser = require('cookie-parser')
+
 //middlewares
 app.use(express.urlencoded({extended: true}))
-app.use(cookieParser())
+app.use(require('cookie-parser')())
+app.use(require('cors')())
 
 mongoose.connect(url)
     .then(() => {

@@ -5,9 +5,9 @@ const create = (req, res) => {
         .then(value => {
 
             if (value.length === 0) {
-                res.json({status: "warning", message: "User could not founded"})
+                res.status(404).json({status: "warning", message: "User could not founded"})
             } else if (value[0].token !== undefined) {
-                res.json({status: "warning", message: "User already has a token"})
+                res.status(401).json({status: "warning", message: "User already has a token"})
             } else {
                 tokenGenerator.generateKey({
                     len: 10,
@@ -15,8 +15,15 @@ const create = (req, res) => {
                     strong: false,
                     retry: false
                 }, (err, key) => {
-                    userCollection.updateOne({mail: req.body.mail, password: req.body.password}, {$set: {token: `Bearer ${key}`}})
-                        .then(result => res.json({status:"ok",message:`Your authentication key is ${key}`}))
+                    userCollection.updateOne({
+                        mail: req.body.mail,
+                        password: req.body.password
+                    }, {$set: {token: `Bearer ${key}`}})
+                        .then(result => res.json({
+                            status: "ok",
+                            message: `Your authentication key created successfully`,
+                            token: key
+                        }))
                         .catch(err => res.json(err))
 
                 })
